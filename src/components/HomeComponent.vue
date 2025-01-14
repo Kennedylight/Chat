@@ -1,317 +1,478 @@
 <template>
-    <div>
-        <div style="z-index: 100;" id="nav" class="h-28  flex  fixed justify-center items-center w-full ">
-            <div class="w-10/12 lg:w-11/12 h-5/6 grid grid-rows-2  grid-cols-5 ">
-                <div class="row-span-1 col-span-1 ">
-                    <div class="flex font-bold text-2xl text-white justify-center w-full h-full items-center">
-                        <span class="text-[#94C12F]">S</span><span id="last" class="text-white">CHMID</span>
-                    </div>
-                </div>
-                <div class="row-span-1 col-start-5 col-span-1 ">
-                    <div class="flex text-white justify-center w-full h-full items-center">
-                        <button
-                            class="px-5 text-md items-center flex justify-end text-center h-10 rounded-full border hover:border-none hover:bg-[#94C12F] duration-500 hover:text-white text-[#94C12F] border-[#94C12F]">
-                            connexion
-                        </button>
-                    </div>
-                </div>
-                <div class="row-span-1 col-start-1 col-span-5 ">
-                    <div id="items" class="w-11/12 text-white items-center hidden lg:flex justify-around mx-auto h-full ">
-                        <div>
-                            <a href="#"
-                                class="text-md font-semibold  capitalize duration-500 hover:text-[#94C12F]">Acceuil</a>
-                        </div>
-                        <div>
-                            <a href="#" class="text-md   font-semibold capitalize duration-500 hover:text-[#94C12F]">Concept
-                                du cursus</a>
-                        </div>
-                        <div>
-                            <a href="#" class="text-md  font-semibold capitalize duration-500 hover:text-[#94C12F]">Annonces
-                                publiees
-                            </a>
-                        </div>
-                        <div>
-                            <a href="#" class="text-md  font-semibold capitalize duration-500 hover:text-[#94C12F]">Je
-                                demenage</a>
-                        </div>
-                        <div>
-                            <a href="#" class="text-md   font-semibold capitalize duration-500 hover:text-[#94C12F]">Je
-                                propose mon aide</a>
-                        </div>
-                        <div>
-                            <a href="#" class="text-md   font-semibold capitalize duration-500 hover:text-[#94C12F]">SCHMID
-                                vous conseille</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+     <div class="fixed z-50 p-4 space-y-3 font-bold text-white bg-[#EC3655] rounded-md top-24 right-3 " v-if="value==true">
+            <p class="cursor-pointer hover:bg-[#EF4444]">Home</p>
+            <p class="cursor-pointer">About Us</p>
+            <p class="cursor-pointer">Contact</p>
+        </div> 
+  <div class="w-full h-screen bg-[#0E0E0E] text-white">
+   
+    <div
+      class="w-full h-[9%] text-white bg-[#0E0E0E] fixed z-40 px-4 flex items-center justify-between"
+    >
+      <img src="" alt="" />
+      <nav class="hidden space-x-24 font-semibold lg:flex">
+        <a href="#" class="transition-all duration-700 hover:text-[#EF4444]">Home</a>
+        <a href="#" class="transition-all duration-700 hover:text-[#EF4444]">About Us</a>
+        <a href="#" class="transition-all duration-700 hover:text-[#EF4444]">Contact</a>
+      </nav>
+      <nav class="flex space-x-2 font-semibold">
+      <img src="../../public/icons/menu.svg" class="cursor-pointer md:hidden h-7 w-7" @click="value = !value"  alt="">
+
+        <router-link to="register">Register</router-link>
+        <p>|</p>
+        <router-link to="/login" class="text-red-500">Login</router-link>
+      </nav>
+    </div>
+    <div class="w-full h-[9%] bg-red-500"></div>
+    <div class="w-full h-[91%]">
+      <div class="w-full xl:h-[90%] hidden h-[60%] relative">
+       
+          <swiper
+    :spaceBetween="30"
+    :centeredSlides="true"
+    :autoplay="{
+      delay: 2500,
+      disableOnInteraction: true,
+    }"
+    :pagination="{
+      clickable: true,
+    }"
+    :navigation="false"
+    :modules="modules"
+    @autoplayTimeLeft="onAutoplayTimeLeft"
+    class="mySwiper relative lg:hidden  w-full h-full"
+  >
+    <swiper-slide class="w-full h-full relative" >
+      <div class="absolute z-10 w-full h-full">
+        
+          <img
+            src="../../public/kaiju.jpeg"
+            class="object-center object-contain "
+            alt=""
+          />
         </div>
-        <div class="w-screen h-[75vh] lg:h-[95vh] flex flex-col bg-green-700 relative">
-            <div class="w-screen h-full z-50 bg-opacity-40  bg-black absolute"></div>
-            <div class="w-screen h-full absolute" style="z-index: 40;">
-                <div class="h-full  w-full">
-                    <swiper style="--swiper-pagination-color: #94C12F;" :spaceBetween="0" :centeredSlides="true" :autoplay="{
-                        delay: 2500,
-                        disableOnInteraction: false,
-                    }" :pagination="{
-    clickable: true,
-}" :navigation="false" :modules="modules" class="mySwiper w-full h-full">
-                        <swiper-slide class="h-screen   w-screen flex justify-start items-end">
-                            <!-- <div style="z-index: 80;" class="w-10/12 h-5/6 mx-auto flex  justify-start items-end">
-                                <div class=" space-y-4  rounded">
-                                    <div class="text-5xl  text-white italic font-bold">
-                                        <p>Controler votre depart</p>
-                                    </div>
-                                    <div class="text-white text-lg font-medium">
-                                        <p>Sachez ou et comment va se derouler votre deplacement</p>
-                                    </div>
-                                    <div>
-                                        <button style="z-index: 110;"
-                                            class="bg-[#94C12F] cursor-pointer text-lg rounded px-16 py-3 capitalize font-semibold text-white">
-                                            debuter votre demarche
-                                        </button>
-                                    </div>
-                                </div>
-                            </div> -->
+               <div
+          class="absolute z-20 flex items-center w-full h-full px-2 text-white lg:px-8 bg-black/60" @click="value=false"
+        >
+          <div class="lg:w-[40%] w-[98%] space-y-5">
+            <img src="" alt="" />
+            <p class="text-left">
+          
 
-                            <img class="object-cover object-center w-full h-full" src="/img/images/banner-8.jpg" alt="">
-                        </swiper-slide>
-
-                        <swiper-slide class="h-screen w-screen">
-                            <img class="object-cover object-center w-full h-full" src="/img/images/banner-8.jpg" alt="">
-                        </swiper-slide>
-
-                        <swiper-slide class="h-screen w-screen">
-                            <img class="object-cover object-center w-full h-full" src="/img/images/banner-9.jpg" alt="">
-                        </swiper-slide>
-
-                    </swiper>
-                </div>
+Dans un monde où des créatures gigantesques appelées Kaiju surgissent régulièrement pour semer le chaos et la destruction, Kafka Hibino rêve de devenir un membre des Forces de Défense pour les combattre. </p>
+            <div
+              class="w-32 py-3 font-semibold text-center rounded-md cursor-pointer bg-[#EC3655]"
+            >
+              Watch Now
             </div>
-            <div style="z-index:70;" class="w-11/12  h-full  mx-auto lg:mx-0 flex justify-center lg:justify-end  items-end">
-
-                <div class="w-10/12 lg:w-4/12 space-y-2 h-[50%] lg:h-[65%] bg-white p-4 bg-opacity-50 rounded-t-md">
-                    <div class="h-1/2 w-full border border-white rounded flex justify-center items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-28 text-white h-28">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                        </svg>
-                    </div>
-                    <div
-                        class="h-1/2 w-full border space-y-4 border-white rounded flex flex-col justify-center items-center">
-                        <div class="w-[95%] mx-auto gap-1  h-10 lg:h-14 px-3 rounded ">
-                            <div
-                                class="text-[#94C12F] w-full text-2xl font-semibold bg-white flex justify-center items-center h-full rounded">
-                                <vue3-autocounter ref='counter' :startAmount='0' :endAmount='1096' :duration='3'
-                                    separator=',' decimalSeparator='.' :decimals='0' :autoinit='true' />
-                            </div>
-                        </div>
-                        <div class="w-[95%] mx-auto  text-sx lg:text-2xl font-semibold  px-3">
-                            <p>demenagements deja realises grace a vous</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-
-        <div style="z-index: 100;" class="h-[80vh] w-full bg-white flex justify-center items-center">
-            <div class="w-10/12 h-96 grid gap-4 grid-cols-2 ">
-                <div class="w-full h-full bg-black">
-                    q
-                </div>
-                <div class="w-full h-full bg-white">
-                    <div class="capitalize h-[20%] w-full  text-2xl font-semibold">
-                        <p>SCHMID, Un demenagement simplifie et eco - responsable</p>
-                    </div>
-                    <div class="capitalize border-l-8 h-[80%] border-[#94C12F] text-md font-semibold p-4">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus voluptate, eaque blanditiis
-                            ipsum eligendi suscipit totam perspiciatis dolor minus nulla provident ullam explicabo hic,
-                            fugiat asperiores reprehenderit omnis similique mollitia. </p>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus voluptate, eaque blanditiis
-                            ipsum eligendi suscipit totam perspiciatis dolor minus nulla provident ullam explicabo hic,
-                            fugiat asperiores reprehenderit omnis similique mollitia. </p>
-                    </div>
-                </div>
-            </div>
+    </swiper-slide>
+    <swiper-slide class="w-full h-full relative" >
+      <div class="absolute z-10 w-full h-full">
+        
+          <img
+            src="../../public/mha1.jpeg"
+            class="object-center object-contain "
+            alt=""
+          />
         </div>
-
-        <div class="h-32 w-full bg-white flex justify-center ">
-            <div class="w-7/12 h-full bg-white space-y-3 flex flex-col justify-center items-center">
-                <div class="text-center text-2xl font-semibold text-black">
-                    Nos Collaborateurs les plus fideles
-                </div>
-                <div class="w-3/12 h-1 rounded bg-[#94C12F]"></div>
+               <div
+          class="absolute z-20 flex items-center w-full h-full px-2 text-white lg:px-8 bg-black/60" @click="value=false"
+        >
+          <div class="lg:w-[40%] w-[98%] space-y-5">
+            <img src="" alt="" />
+            <p class="text-left">
+              Dans un monde où 80 % de la population possède des super-pouvoirs appelés " Alters ", Izuku Midoriya est un jeune garçon né sans Alter. Malgré son manque de pouvoir, Izuku rêve de devenir un héros comme son idole, All Might, le héros numéro un.
+            </p>
+            <div
+              class="w-32 py-3 font-semibold text-center rounded-md cursor-pointer bg-[#EC3655]"
+            >
+              Watch Now
             </div>
+          </div>
         </div>
-        <div class="w-full flex justify-center items-center">
-
-            <div class="h-[60vh] bg-white w-10/12  mx-auto">
-                <swiper :autoplay="{
-                    delay: 3000,
-                    disableOnInteraction: true,
-                }" style="--swiper-navigation-color: #94C12F;" :navigation="true" :modules="modules"
-                    class="w-full h-full">
-                    <swiper-slide class="">
-                        <div class="bg-white shadow w-[45rem] h-5/6 rounded-xl flex flex-col justify-center items-center">
-                            <div class="w-4/6 h-44">
-                                <img class="object-cover object-center" src="/img/images/guenstige-umzugsunternehmen.png"
-                                    alt="">
-                            </div>
-                            <span class="text-xl font-medium"> Umzugsunternehmen Angebote | Günstige
-                                Umzugsunternehmen</span>
-                        </div>
-                    </swiper-slide>
-
-                    <swiper-slide class="">
-                        <div class="bg-white shadow w-[45rem] h-5/6 rounded-xl flex flex-col justify-center items-center">
-                            <div class="w-4/6 h-44">
-                                <img class="object-cover object-center" src="/img/images/myhammer-umzugsunternehmen.png"
-                                    alt="">
-                            </div>
-                            <span class="text-xl font-medium">Anfrage über myhammer stellen</span>
-                        </div>
-                    </swiper-slide>
-                    <swiper-slide class="">
-                        <div class="bg-white shadow w-[45rem] h-5/6 rounded-xl flex flex-col justify-center items-center">
-                            <div class="w-4/6 h-44">
-                                <img class="object-cover object-center" src="/img/images/Schmid-Berlin-Logo-150x150-1.jpg"
-                                    alt="">
-                            </div>
-                            <span class="text-xl font-medium">anfrage über Meinumzug stellen</span>
-                        </div>
-                    </swiper-slide>
-                </swiper>
+    </swiper-slide>
+    <swiper-slide class="w-full h-full relative" >
+      <div class="absolute z-10 w-full h-full">
+        
+          <img
+            src="../../public/hxh.jpeg"
+            class="object-center object-contain "
+            alt=""
+          />
+        </div>
+               <div
+          class="absolute z-20 flex items-center w-full h-full px-2 text-white lg:px-8 bg-black/60" @click="value=false"
+        >
+          <div class="lg:w-[40%] w-[98%] space-y-5">
+            <img src="" alt="" />
+            <p class="text-left">
+             Inspiré par son père, un Hunter légendaire qui a disparu il y a de nombreuses années, Gon quitte son île natale et se lance dans un voyage pour passer l'examen Hunter et suivre les traces de son père.
+            </p>
+            <div
+              class="w-32 py-3 font-semibold text-center rounded-md cursor-pointer bg-[#EC3655]"
+            >
+              Watch Now
             </div>
-
+          </div>
+        </div>
+    </swiper-slide>
+   
+    <template #container-end>
+      <div class="autoplay-progress">
+        <svg viewBox="0 0 48 48" ref="progressCircle" class="text-[#EC3655]">
+          <circle cx="24" cy="24" r="20" ></circle>
+        </svg>
+        <span ref="progressContent"></span>
+      </div>
+    </template>
+          </swiper>
+ 
+      </div>
+      <div class="w-full xl:h-[90%] h-[60%] relative">
+       
+          <swiper
+    :spaceBetween="30"
+    :centeredSlides="true"
+    :autoplay="{
+      delay: 2500,
+      disableOnInteraction: false,
+    }"
+    :pagination="{
+      clickable: true,
+    }"
+    :navigation="false"
+    :modules="modules"
+    @autoplayTimeLeft="onAutoplayTimeLeft"
+    class="mySwiper relative lg:hidden  w-full h-full"
+  >
+   <swiper-slide  class="w-full h-full bg-red-400 relative">
+   <div class="w-full h-full absolute z-10">
+    <img src="../../public/ken.gif" class="w-full h-full object-contain" alt="">
+   </div>
+    <div class="w-full  h-full absolute z-20 flex justify-end">
+      <div class="w-1/2 h-full flex justify-center items-center">
+        <div class="w-[55%] rounded-[60px] transform rotate-45 h-[75%] border border-[#048DDB] flex justify-center items-center bg-transparent">
+        <div class="w-[95%] rounded-[60px]  h-[95%]  flex justify-center  items-center  bg-white/20">
+          <img src="../../public/kaiju.jpeg" class="w-[60%]  rounded-[60px]  h-[60%] object-cover">
         </div>
 
-        <div class="h-[80vh]  w-full flex flex-col justify-center items-center relative">
-            <div class="w-[38%]  mx-auto h-5/6 rounded absolute backdrop-blur-2xl">
-                <div class="h-1/2  relative">
-                    <div class="w-full h-full absolute bg-gradient-to-br from-black bg-opacity-40 p-4 grid grid-cols-2">
-                        <div class="text-4xl text-white  font-semibold">
-                            <p>Comment Optimiser l'espace d'un <br> <span>30 m2 </span></p>
-                        </div>
-                    </div>
-                    <div class="w-full h-full">
-                        <img class="w-full h-full object-cover object-top" src="/img/images/banner-1.jpeg" alt="">
-                    </div>
-
-
-                </div>
-                <div class="w-full h-1/2 absolute bg-slate-400 p-6 grid grid-cols-2">
-                    <div class=" text-white text-left leading-6  text-sm font-semibold">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor voluptates consequatur veniam
-                            earum eaque minus corporis optio beatae. Illum delectus accusantium quam dolor qui, maiores
-                            aliquid eligendi officiis aut expedita.</p>
-                    </div>
-                    <div class=" text-white text-right leading-6 text-sm font-semibold">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor voluptates consequatur veniam
-                            earum eaque minus corporis optio beatae. Illum delectus accusantium quam dolor qui, maiores
-                            aliquid eligendi officiis aut expedita.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="w-11/12 mx-auto h-4/6 border bg-slate-400 border-[#94C12F] rounded-lg">
-
-            </div>
-
         </div>
-        <div class="w-11/12 mx-auto flex flex-col justify-center items-center ">
-            <div class="">
-                <button id="btnModal"
-                    class="text-[#94C12F] px-5 rounded text-md font-semibold py-2 border border-[#94C12F]">
-                    Voir Nos Conseils
-                </button>
+      </div>
+    </div>
+    <div class="w-full  h-full absolute z-30 ">
+      <div class="w-1/2 h-full  flex justify-center items-center">
+        <div class="w-[85%] h-[90%]  flex justify-center p-7 items-end">
+          <div class="space-y-4 text-white">
+            <h1 class="text-[30px] uppercase font-bold">Kaiju N_8</h1>
+            <p class="text-left text-[16px]">Dans un monde où des créatures gigantesques appelées Kaiju surgissent régulièrement pour semer le chaos et la destruction, Kafka Hibino rêve de devenir un membre des Forces de Défense pour les combattre. </p>
+           <div class="w-full h-full flex justify-center items-center">
+              <div class="py-2 w-[40%] bg-[#EC3655] rounded-md flex justify-center items-center">
+              <p>Watch</p>
             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </swiper-slide>
+    <swiper-slide  class="w-full h-full bg-red-400 relative">
+   <div class="w-full h-full absolute z-10">
+    <img src="../../public/ken.gif" class="w-full h-full object-contain" alt="">
+   </div>
+    <div class="w-full  h-full absolute z-20 flex justify-end">
+      <div class="w-1/2 h-full flex justify-center items-center">
+        <div class="w-[55%] rounded-[60px] transform rotate-45 h-[75%] border border-[#048DDB] flex justify-center items-center bg-transparent">
+        <div class="w-[95%] rounded-[60px]  h-[95%]  flex justify-center  items-center  bg-white/20">
+          <img src="../../public/mha1.jpeg" class="w-[60%]  rounded-[60px]  h-[60%] object-cover">
         </div>
 
-        <div class="h-24 w-full bg-[#94C12F] my-4 flex justify-center items-center">
-            <div class="w-8/12 h-full  grid grid-cols-5">
+        </div>
+      </div>
+    </div>
+    <div class="w-full  h-full absolute z-30 ">
+      <div class="w-1/2 h-full  flex justify-center items-center">
+        <div class="w-[85%] h-[90%]  flex justify-center p-7 items-end">
+          <div class="space-y-4 text-white">
+            <h1 class="text-[30px] uppercase font-bold">My hero Academy</h1>
+            <p class="text-left text-[16px]"> Dans un monde où 80 % de la population possède des super-pouvoirs appelés " Alters ", Izuku Midoriya est un jeune garçon né sans Alter. Malgré son manque de pouvoir, Izuku rêve de devenir un héros comme son idole, All Might, le héros numéro un.</p>
+            <div class="w-full h-full flex justify-center items-center">
+              <div class="py-2 w-[40%] bg-[#EC3655] rounded-md flex justify-center items-center">
+              <p>Watch</p>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </swiper-slide>
+    <swiper-slide  class="w-full h-full bg-red-400 relative">
+   <div class="w-full h-full absolute z-10">
+    <img src="../../public/ken.gif" class="w-full h-full object-contain" alt="">
+   </div>
+    <div class="w-full  h-full absolute z-20 flex justify-end">
+      <div class="w-1/2 h-full flex justify-center items-center">
+        <div class="w-[55%] rounded-[60px] transform rotate-45 h-[75%] border border-[#048DDB] flex justify-center items-center bg-transparent">
+        <div class="w-[95%] rounded-[60px]  h-[95%]  flex justify-center  items-center  bg-white/20">
+          <img src="../../public/hxh.jpeg" class="w-[60%]  rounded-[60px]  h-[60%] object-cover">
+        </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="w-full  h-full absolute z-30 ">
+      <div class="w-1/2 h-full  flex justify-center items-center">
+        <div class="w-[85%] h-[90%]  flex justify-center p-7 items-end">
+          <div class="space-y-4 text-white">
+            <h1 class="text-[30px] uppercase font-bold">Hunter X Hunter</h1>
+            <p class="text-left text-[16px]">  Inspiré par son père, un Hunter légendaire qui a disparu il y a de nombreuses années, Gon quitte son île natale et se lance dans un voyage pour passer l'examen Hunter et suivre les traces de son père.
+          </p>
+            <div class="w-full h-full flex justify-center items-center">
+              <div class="py-2 w-[40%] bg-[#EC3655] rounded-md flex justify-center items-center">
+              <p>Watch</p>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </swiper-slide>
+   
+    <template  #container-end>
+      <div class="autoplay-progress hidden">
+        <svg viewBox="0 0 48 48" ref="progressCircle" class="text-[#EC3655]">
+          <circle cx="24" cy="24" r="20" ></circle>
+        </svg>
+        <span ref="progressContent"></span>
+      </div>
+    </template>
+          </swiper>
+ 
+      </div>
+      <div
+        class="w-full lg:h-[20%] bg-[#0E0E0E] p-4 h-[10%] text-center lg:flex justify-center items-center font-bold text-[32px]"
+      >
+        <p class="uppercase ">QUELQUES ANIMES</p>
+      </div>
+      <div class="flex flex-wrap bg-[#0E0E0E] w-full h-auto gap-4 px-4 ">
+        <div
+          class="w-full text-white bg-[#161616] rounded-md shadow-md lg:w-[24%] h-96"
+          v-for="i in 10"
+          :key="i"
+        >
+          <div class="w-full h-[60%]">
+           
+            <img
+              src="../../public/minato.jpg" v-if="i%2==0"
+              class="object-cover w-full h-full rounded-t-md"
+              alt=""
+            />
+             <img
+              src="../../public/cid.jpg" v-else
+              class="object-cover w-full h-full rounded-t-md"
+              alt=""
+            />
+           
+          </div>
+          <div class="flex items-center justify-center w-full px-2 h-[40%]">
+            <div class="space-y-2">
+              <p class="font-bold text-center text-[18px] ">
+                Boruto Uzumaki
+              </p>
+              <div class="flex justify-center font-extrabold ">
+                <div class="flex space-x-2">
+                  <img
+                    src="../../public/icons/star-half-sharp.svg"
+                    style="color: yellow"
+                    alt=""
+                    class="w-5 h-5 "
+                  />
+                  <p>4/5</p>
+                </div>
+              </div>
+              <div class="flex items-center justify-center w-full">
                 <div
-                    class="col-span-2 font-semibold text-xl flex items-center justify-center text-white text-center">
-                    Abonnez Vous a notre newsletter !
+                  class="w-32 py-3 font-semibold text-center rounded-md cursor-pointer bg-[#EC3655]"
+                >
+                  Watch Now
                 </div>
-                <div class="col-span-3  flex items-center justify-center">
-                    <div class="w-10/12  rounded-md overflow-hidden  flex h-12">
-                        <div class="w-[70%] h-full bg-white">
-                            <input type="email" name="" class="w-full h-full px-3 py-1 focus:outline-none"
-                                placeholder="example@gmail.com*" id="">
-                        </div>
-                        <div class="w-[30%] h-full bg-white border-l border-[#94C12F]">
-                            <button id="btnModal"
-                                class="bg-white h-full w-full  text-md font-semibold text-[#94C12F]">
-                                Validez
-                            </button>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-full h-[9%] bg-[#0E0E0E]"></div>
+       <div
+          class="w-full lg:h-[50%] bg-[#000000] pt-3 pb-3 xl:pb-0 xl:pt-0 flex justify-center items-center"
+        >
+          <div class="xl:w-[60%] w-[95%] h-[65%] flex text-white">
+            <div class="xl:w-1/4 w-1/3 h-full text-[11px] space-y-7">
+              <p class="hover:text-[#D02F4A] cursor-pointer">L'App CANAL+</p>
+              <p class="hover:text-[#D02F4A] cursor-pointer">Aide et contact</p>
+              <p class="hover:text-[#D02F4A] cursor-pointer">Réabonnement</p>
+              <p class="hover:text-[#D02F4A] cursor-pointer">Réclamation</p>
+            </div>
+            <div class="xl:w-1/4 w-1/3 h-full text-[11px] space-y-7">
+              <p class="hover:text-[#D02F4A] cursor-pointer">CANAL+ BUSINESS</p>
+              <p class="hover:text-[#D02F4A] cursor-pointer">Nos engagements</p>
+              <p class="hover:text-[#D02F4A] cursor-pointer">Publicité</p>
+              <p class="hover:text-[#D02F4A] cursor-pointer">CANAL+ Group</p>
+            </div>
+            <div class="xl:w-1/4 w-1/3 h-full text-[11px] space-y-7">
+              <p class="hover:text-[#D02F4A] cursor-pointer">Politique cookies</p>
+              <p class="hover:text-[#D02F4A] cursor-pointer">Gestions des cookies</p>
+              <p class="hover:text-[#D02F4A] cursor-pointer">Mentions légales</p>
+              <p class="hover:text-[#D02F4A] cursor-pointer">CGU</p>
+              <p class="hover:text-[#D02F4A] cursor-pointer">Données personnelles</p>
+            </div>
+            <div class="hidden w-1/4 h-full xl:block">
+              <div class="w-full h-[10%]">
+                <img src="../../public/icons/logo-facebook.svg" class="object-cover w-10 h-10" />
+              </div>
+              <div class="w-full h-[90%] relative flex items-end">
+                <div
+                  class="absolute w-full px-2 py-3 space-y-3 overflow-y-scroll bg-[#4C7CE4] border border-white rounded-md h-72 bottom-12"
+                  :class="value3 == false ? 'hidden' : ''"
+                >
+                  <p class="text-[14px]">Benin</p>
+                  <p class="text-[14px]">Congo</p>
+                  <p class="text-[14px]">Algerie</p>
+                  <p class="text-[14px]">Tunisie</p>
+                  <p class="text-[14px]">Mali</p>
+                  <p class="text-[14px]">Nigeria</p>
+                  <p class="text-[14px]">Cote d'ivoire</p>
+                  <p class="text-[14px]">Rca</p>
+                  <p class="text-[14px]">Tchad</p>
+                </div>
+                <div
+                  class="w-full h-[23%] relative rounded-md flex px-4 text-white items-center border border-white bg-transparent"
+                  @click="value3 = !value3"
+                >
+                  <div class="flex justify-between w-full">
+                    <p class="text-[14px]">Cameroun</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      class="w-3 h-3 mt-1 text-white transform"
+                      :class="value3 == true ? ' rotate-180' : ''"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex w-full h-24 bg-[#4C7CE4] xl:hidden">
+          <div class="flex items-center justify-between w-full h-full px-2">
+            <div class="w-full flex items-center h-[10%]">
+              <img src="../../public/icons/logo-facebook.svg" class="object-cover w-10 h-10" />
+            </div>
+            <div class="w-full h-[90%] relative flex items-center">
+              <div
+                class="absolute w-full px-2 py-3 space-y-3 overflow-y-scroll text-white bg-[#4C7CE4] border border-white rounded-md h-72 bottom-12"
+                :class="value3 == false ? 'hidden' : ''"
+              >
+                <p class="text-[14px]">Benin</p>
+                <p class="text-[14px]">Congo</p>
+                <p class="text-[14px]">Algerie</p>
+                <p class="text-[14px]">Tunisie</p>
+                <p class="text-[14px]">Mali</p>
+                <p class="text-[14px]">Nigeria</p>
+                <p class="text-[14px]">Cote d'ivoire</p>
+                <p class="text-[14px]">Rca</p>
+                <p class="text-[14px]">Tchad</p>
+                <p class="text-[14px]">Ghana</p>
+              </div>
+              <div
+                class="w-full h-[54%] relative rounded-md flex px-4 text-white items-center border border-white bg-[#4C7CE4]"
+                @click="value3 = !value3"
+              >
+                <div class="flex justify-between w-full">
+                  <p class="text-[14px]">Cameroun</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-3 h-3 mt-1 text-white transform"
+                    :class="value3 == true ? ' rotate-180' : ''"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
+  </div>
 </template>
 <script>
-// Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import { ref } from 'vue';
+  // Import Swiper Vue.js components
+  import { Swiper, SwiperSlide } from 'swiper/vue';
 
-// Import Swiper styles
-import 'swiper/css';
+  // Import Swiper styles
+  import 'swiper/css';
 
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+  import 'swiper/css/pagination';
+  import 'swiper/css/navigation';
 
-// import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import Vue3autocounter from 'vue3-autocounter';
+  import '../../src/test.css';
 
-window.onscroll = function () { scrollFunction() };
+  // import required modules
+  import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
-function scrollFunction() {
-    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-        document.querySelector("#nav").classList.add("bg-white")
-        document.querySelector("#nav").classList.add("shadow")
-        document.querySelector("#nav").classList.add("duration-500")
-        document.querySelector("#last").classList.replace("text-white", "text-black")
-        document.querySelector("#items").classList.replace("text-white", "text-black");
-    } else {
-        document.querySelector("#nav").classList.remove("bg-white")
-        document.querySelector("#nav").classList.remove("shadow")
-        document.querySelector("#last").classList.replace("text-black", "text-white")
-        document.querySelector("#nav").classList.remove("duration-500")
-        document.querySelector("#items").classList.replace("text-black", "text-white");
-    }
-}
 export default {
-    components: {
-        Swiper,
-        SwiperSlide,
-        'vue3-autocounter': Vue3autocounter,
+   components: {
+      Swiper,
+      SwiperSlide,
     },
-
-    setup() {
-        return {
-            modules: [Autoplay, Pagination, Navigation],
-        };
+    data(){
+        return{
+            value3:false,
+          value: false,
+          allAnimes: {
+            0: {
+              img:'kaiju.jpeg'
+            },
+             1: {
+              img:'mha1.jpeg'
+            },
+             2: {
+              img:'hxh.jpeg'
+            },
+            
+            },
+            text:{
+               img:'mha1.jpeg'
+            }
+        }
     },
-
+     setup() {
+      const progressCircle = ref(null);
+      const progressContent = ref(null);
+      const onAutoplayTimeLeft = (s, time, progress) => {
+        progressCircle.value.style.setProperty('--progress', 1 - progress);
+        progressContent.value.textContent = `${Math.ceil(time / 1000)}s`;
+      };
+      return {
+        onAutoplayTimeLeft,
+        progressCircle,
+        progressContent,
+        modules: [Autoplay, Pagination, Navigation],
+      };
+    },
 }
 </script>
-<style scoped>
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    height: 100%;
-    /* Center slide text vertically */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-</style>

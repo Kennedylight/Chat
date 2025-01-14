@@ -2,17 +2,24 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    api: 'http://192.168.50.136:8000/api',
-    server: 'http://192.168.50.136:8000/',
+    picture: 'http://127.0.0.1:8000/avatars/',
+    cv: 'http://127.0.0.1:8000/CV/',
+    api: 'http://127.0.0.1:8000/api/',
+    server: 'http://127.0.0.1:8000/',
+    host: '127.0.0.1',
+    personne:[],
+    joueur:[],
+    config: {headers:{'Authorization':'Bearer '+localStorage.getItem('jwtToken')} },
   },
-  getters: {
+    getters: {
 
-  },
-  mutations: {
-  },
-  actions: {
+    },
+    mutations: {
+    },
+    actions: {
 
-  },
-  modules: {
-  }
-})
+    },
+    modules: {
+    }
+  })
+
