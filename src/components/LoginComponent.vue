@@ -151,23 +151,24 @@ export default {
   },
   methods: {
     send() {
-       if ( !this.password || !this.email) {
-        this.showLoading = false;
-        alert("veuiller remplir tous les champs");
-        return;
-      }
-      this.showLoading = true;
-      let datas = new FormData();
-      datas.append("password", this.password);
-      datas.append("email", this.email);
-      console.log(datas[0])
-      this.axios.post(this.$store.state.api + "login", datas).then(({ data }) => {
-          console.log(data);
-          this.$router.push('/devoir');
-        }).catch(({ err }) => {
-          console.log(err);
-          this.showLoading = false;
-        });
+      //  if ( !this.password || !this.email) {
+      //   this.showLoading = false;
+      //   alert("veuiller remplir tous les champs");
+      //   return;
+      // }
+      // this.showLoading = true;
+      // let datas = new FormData();
+      // datas.append("password", this.password);
+      // datas.append("email", this.email);
+      // console.log(datas[0])
+      // this.axios.post(this.$store.state.api + "login", datas).then(({ data }) => {
+      //     console.log(data);
+      //     this.$router.push('/devoir');
+      //   }).catch(({ err }) => {
+      //     console.log(err);
+      //     this.showLoading = false;
+      //   });
+      this.$router.push('chat')
     },
   },
 };
