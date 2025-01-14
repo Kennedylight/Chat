@@ -7,6 +7,11 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  
+    "engines": {
+      "node": "18.18.0"
+    },
+  
   "dependencies": {
     "@vue/compiler-sfc": "^3.3.9",
     "axios": "^1.4.0",
