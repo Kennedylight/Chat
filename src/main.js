@@ -8,6 +8,7 @@ import VueAxios from 'vue-axios'
 import moment from 'moment'
 import Echo from "laravel-echo"
 import pusherJs from 'pusher-js'
+
 const app = createApp(App)
 
 
@@ -28,4 +29,4 @@ window.Echo = new Echo({
     },
 });
 app.config.globalProperties.$moment = moment
-app.use(VueAxios, axios).use(moment).use(router).use(store).mount('#app')
+app.use(VueAxios, axios).use(router).use(store).mount('#app')

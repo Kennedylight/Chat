@@ -32,9 +32,9 @@
       class="lg:flex justify-center items-center hidden w-full lg:w-[45%] h-60 md:h-[30%] lg:h-full"
     >
       <img
-        src="../../public/yourname.jpeg"
+        src="../../public/login-removebg-preview.png"
         alt=""
-        class="rounded-b-[40px] lg:rounded-[40px] w-full lg:w-[96%] h-full lg:h-[98%] object-cover"
+        class=" w-full lg:w-[96%] h-full lg:h-[98%] object-cover"
       />
     </div>
     <div
@@ -143,7 +143,7 @@ export default {
   data() {
     return {
       value: false,
-      password: "ghj",
+      password: "",
 
       email: "",
       showLoading: false,
@@ -151,24 +151,32 @@ export default {
   },
   methods: {
     send() {
-      //  if ( !this.password || !this.email) {
-      //   this.showLoading = false;
-      //   alert("veuiller remplir tous les champs");
-      //   return;
-      // }
-      // this.showLoading = true;
-      // let datas = new FormData();
-      // datas.append("password", this.password);
-      // datas.append("email", this.email);
-      // console.log(datas[0])
-      // this.axios.post(this.$store.state.api + "login", datas).then(({ data }) => {
-      //     console.log(data);
-      //     this.$router.push('/devoir');
-      //   }).catch(({ err }) => {
-      //     console.log(err);
-      //     this.showLoading = false;
-      //   });
-      this.$router.push('chat')
+       if ( !this.password || !this.email) {
+        this.showLoading = false;
+        alert("veuiller remplir tous les champs");
+        return;
+      }
+      this.showLoading = true;
+      let datas = new FormData();
+      datas.append("password", this.password);
+      datas.append("email", this.email);
+      console.log(datas[0])
+      this.axios.post(this.$store.state.api + "login", datas).then(({ data }) => {
+          console.log(data);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          localStorage.setItem('jwtoken', data.access_token);
+          if(data.user.type==2){
+            this.$router.push('/dashboard');
+
+          }else{
+            this.$router.push('/chat');
+
+          }
+        }).catch(({ err }) => {
+          console.log(err);
+          this.showLoading = false;
+        });
+      
     },
   },
 };

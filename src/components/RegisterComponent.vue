@@ -1,23 +1,33 @@
 <template>
   <div class="relative lg:flex bg-[#1B2026] w-full h-screen">
     <div class="z-50 absolute flex justify-center items-center bg-black/60 w-full h-screen" v-if="verifiedCode==true">
-    <div class="bg-white shadow-lg p-8 rounded-lg w-full max-w-md" >
+    <div class="relative bg-white shadow-lg p-8 rounded-lg w-[90%] max-w-md" >
+      <div class="top-2 right-3 absolute flex justify-center items-center border-[#1DAA61] border rounded-full w-6 h-6 cursor-pointer" @click="verifiedCode = true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-red-500">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+        
+      </div>
         <h2 class="mb-6 font-semibold text-2xl text-center text-gray-800">Verify Your Email</h2>
         <p class="mb-8 text-center text-gray-600">Enter the 4-digit code sent to your email address</p>
 
         <div class="space-y-6">
             <div class="flex justify-center space-x-4">
-                <input type="text" maxlength="1" class="border-gray-300 border focus:border-blue-500 rounded-md focus:ring-2 focus:ring-blue-500 w-12 h-12 text-2xl text-center focus:outline-none" v-model="value1" />
-                <input type="text" maxlength="1" class="border-gray-300 border focus:border-blue-500 rounded-md focus:ring-2 focus:ring-blue-500 w-12 h-12 text-2xl text-center focus:outline-none" v-model="value2"/>
-                <input type="text" maxlength="1" class="border-gray-300 border focus:border-blue-500 rounded-md focus:ring-2 focus:ring-blue-500 w-12 h-12 text-2xl text-center focus:outline-none" v-model="value3" />
-                <input type="text" maxlength="1" class="border-gray-300 border focus:border-blue-500 rounded-md focus:ring-2 focus:ring-blue-500 w-12 h-12 text-2xl text-center focus:outline-none"  v-model="value4" />
+                <input type="text" maxlength="1" class="border-gray-300 focus:bg-[#1DAA61] border rounded-md focus:ring-2 focus:ring-[#1DAA61] w-12 h-12 text-2xl text-center focus:outline-none" v-model="value1" />
+                <input type="text" maxlength="1" class="border-gray-300 focus:bg-[#1DAA61] border rounded-md focus:ring-2 focus:ring-[#1DAA61] w-12 h-12 text-2xl text-center focus:outline-none" v-model="value2"/>
+                <input type="text" maxlength="1" class="border-gray-300 focus:bg-[#1DAA61] border rounded-md focus:ring-2 focus:ring-[#1DAA61] w-12 h-12 text-2xl text-center focus:outline-none" v-model="value3" />
+                <input type="text" maxlength="1" class="border-gray-300 focus:bg-[#1DAA61] border rounded-md focus:ring-2 focus:ring-[#1DAA61] w-12 h-12 text-2xl text-center focus:outline-none"  v-model="value4" />
             </div>
 
-            <div  class="flex justify-center items-center bg-blue-600 hover:bg-blue-700 focus:ring-opacity-50 py-3 rounded-md focus:ring-2 focus:ring-blue-500 w-full font-semibold text-white focus:outline-none" @click="verifyCode">Verify Code</div>
+            <div  class="flex justify-center items-center bg-[#1DAA61] hover:bg-[#1DAA64] focus:ring-opacity-50 py-3 rounded-md focus:ring-2 focus:ring-[#1DAA61] w-full font-semibold text-white cursor-pointer focus:outline-none" @click="verifyCode" v-if="loadingCode == true">Verify Code</div>
+            <div class="flex justify-center w-full" v-else>
+              <div class="border-[#1DAA61] border-t-2 rounded-full w-10 h-10 animate-spin"></div>
+            </div>
         </div>
 
         <p class="mt-6 text-center text-gray-600">
-            Didn't receive a code? <a href="#" class="text-blue-600 hover:underline">Resend</a>
+         
+            Didn't receive a code? <a href="#" class="text-[#1DAA61] hover:underline">Resend</a>
         </p>
     </div>
 </div>
@@ -53,21 +63,18 @@
       class="lg:flex justify-center items-center hidden w-full lg:w-[45%] h-60 md:h-[30%] lg:h-full"
     >
       <img
-        src="../../public/sport.jpeg"
+        src="../../public/register-removebg-preview.png"
         alt=""
         class="rounded-b-[40px] lg:rounded-[40px] w-full lg:w-[96%] h-full lg:h-[98%] object-cover"
       />
     </div>
     <div
-      class="flex justify-center items-center w-full lg:w-[55%] h-full text-white"
+      class="flex justify-center items-center w-full lg:w-[55%] h-full text-white overflow-y-auto"
     >
-      <div class="space-y-4 bg-[red-400] w-[90%] lg:w-[60%] h-auto text-[16px]">
-        <h1 class="font-bold text-[31px] text-center text-white lg:text-center">Hello! <br> Welcome Back</h1>
-        <div class="flex space-x-2 lg:space-x-4 w-full h-12">
-         
-         
-        </div>
-        <div class="space-y-2">
+      <div class="space-y-4  w-[90%] lg:w-[60%] h-auto text-[16px] ">
+        <h1 class="font-bold text-[30px]   text-center text-white lg:text-center">Hello! <br> Welcome Back</h1>
+        
+        <div class="space-y-2 ">
           <div class="space-y-1 w-full h-auto">
         
             <input
@@ -92,6 +99,19 @@
               class="px-4 rounded-md w-full h-12 font-semibold placeholder:font-semibold text-black placeholder:text-gray-800 focus:outline-none"
             />
           </div>
+          <div class="space-y-1 w-full h-auto">
+         
+        
+       </div>
+          <select v-model="filiere" id="filiere" placeholder="--choisir votre filiere--" class="px-4 rounded-md w-full h-12 font-semibold placeholder:font-semibold text-black placeholder:text-gray-800 focus:outline-none">
+            <option value="test" disabled>--Choisir une filiere---</option>                    
+            <option value="maths">Mathématiques</option>
+      <option value="physique">Physique</option>
+      <option value="informatique">Informatique</option>
+    </select>
+         
+    
+         
           <div class="space-y-1 w-full h-auto">
          
             <div class="flex bg-white rounded-md w-full text-black focus:outline-none">
@@ -182,7 +202,9 @@
 </template>
 
 <script>
+
 export default {
+ 
   data() {
     return {
       value: false,
@@ -193,17 +215,22 @@ export default {
       value3:"",
       value4:"",
       verifiedCode:false,
+      loadingCode:true,
       name: "",
       subname: "",
       password: "",
       email: "",
+      filiere:"",
+      
+      
       showLoading: false,
     };
   },
+ 
   methods: {
   sendMail(){
-      if (!this.name || !this.subname || !this.password || !this.email) {
-        this.showLoading = false;
+      if (!this.name || !this.subname || !this.password || !this.email || !this.filiere  ) {
+        
         alert("veuiller remplir tous les champs");
         return;
       }
@@ -211,7 +238,7 @@ export default {
       let datas = new FormData();      
       datas.append("email", this.email);
       this.axios
-        .post(this.$store.state.api + "code", datas)
+        .post(this.$store.state.api + "sendCodeEmail", datas)
         .then(({ data }) => {
           console.log(data);
           this.showLoading = false;
@@ -224,6 +251,7 @@ export default {
     },
     
     verifyCode(){
+      this.loadingCode = false
       this.valueFinal = this.value1 + this.value2 +  this.value3 + this.value4 ;
       this.valueInt = parseInt(this.valueFinal);
       let datas = new FormData();      
@@ -235,8 +263,9 @@ export default {
       date.append("subname", this.subname);
       date.append("password", this.password);
       date.append("email", this.email);
+      date.append("filiere", this.filiere);
       this.axios
-        .post(this.$store.state.api + "verifiedCode", datas)
+        .post(this.$store.state.api + "verifiyCode", datas)
         .then(({ data }) => {
           console.log(data);
           if(data==true){
@@ -244,46 +273,29 @@ export default {
         .post(this.$store.state.api + "register", date)
         .then(({ data }) => {
           console.log(data);
-          this.$router.push('/devoir');
+          localStorage.setItem('user', JSON.stringify(data.user));
+          localStorage.setItem('jwtoken', data.access_token);
+          this.$router.push('/chat');
         })
         .catch(({ err }) => {
           console.log(err);
           this.showLoading = false;
+          
         });
           }
           else{
-            alert("code incorect");}
+            this.loadingCode = true;
+          }
           
         })
         .catch(({ err }) => {
           console.log(err);
           this.showLoading = false;
+          this.loadingCode = true;
         });
     },
  
-    send() {
-      if (!this.name || !this.subname || !this.password || !this.email) {
-        this.showLoading = false;
-        alert("veuiller remplir tous les champs");
-        return;
-      }
-      this.showLoading = true;
-      let datas = new FormData();
-      datas.append("name", this.name);
-      datas.append("subname", this.subname);
-      datas.append("password", this.password);
-      datas.append("email", this.email);
-      this.axios
-        .post(this.$store.state.api + "register", datas)
-        .then(({ data }) => {
-          console.log(data);
-          this.$router.push('/devoir');
-        })
-        .catch(({ err }) => {
-          console.log(err);
-          this.showLoading = false;
-        });
-    },
+
   },
 };
 </script>

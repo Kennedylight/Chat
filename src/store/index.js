@@ -9,7 +9,9 @@ export default createStore({
     host: '127.0.0.1',
     personne:[],
     joueur:[],
-    config: {headers:{'Authorization':'Bearer '+localStorage.getItem('jwtToken')} },
+    config:{ headers: {
+      'Authorization': `Bearer ${localStorage.getItem("jwtoken")}`, // Récupère le token depuis localStorage
+    }},
   },
     getters: {
 
